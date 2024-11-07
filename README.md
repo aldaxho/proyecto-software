@@ -36,18 +36,24 @@ no se olviden de actualizar el .env para la base de datos
    git clone https://github.com/tu-usuario/nombre-del-proyecto.git
    cd nombre-del-proyecto
 2. **Instalar dependencias:**
-composer install
-npm install
+  ```bash
+  composer install
+    npm install
 
 3. **Configurar el archivo .env:**
-cp .env.example .env
+  ```bash
+  cp .env.example .env
 
 4. **Generar la clave de la aplicación:**
-php artisan key:generate
+  ```bash
+  php artisan key:generate
 5. **Ejecutar las migraciones:**
-php artisan migrate
+  ```bash
+  php artisan migrate
 6. **Configurar la base de datos: Asegúrate de que los detalles de la base de datos en el archivo .env sean correctos. Luego, ejecuta las migraciones y seeders:**
-php artisan migrate --seed
+  ```bash
+  php artisan migrate --seed
 
 7. **Ejecutar el servidor:**
-php artisan serve
+  ```bash
+  php artisan serve
