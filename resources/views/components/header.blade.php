@@ -15,9 +15,13 @@
                     <li class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Cursos</a>
                         <ul class="dropdown-menu">
+                            @auth
+                            <li><a href="{{route('client.courses.create')}}" class="dropdown-item">Crear Curso</a></li>        
+                            @endauth
                             <li><a href="{{route('courses.index')}}" class="dropdown-item">Ver Cursos</a></li>
                             <li><a href="account-security.html" class="dropdown-item">Tus Cursos</a></li>
                             <li><a href="account-security.html" class="dropdown-item">Cursos Comprados</a></li>
+                            
                         </ul>
                     </li>
                     <li class="nav-item dropdown">

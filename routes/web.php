@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\CursoController;
 
 
 Route::get('/', function () {
@@ -34,6 +35,8 @@ Route::prefix('courses')->group(function () {
 
 //Route::get('/register', [AuthController::class, 'registerForm'])->name('register');
 Route::post('/register', [AuthController::class, 'register'])->name('register.submit');
+
+
 
 // Rutas para administradores
 Route::middleware('roles:admin')->group(function () {
@@ -75,5 +78,9 @@ Route::middleware('roles:cliente')->group(function () {
         return view('client.orders');
     })->name('client.orders');
 
+  
+    //crud curso para cliente
+    Route::get('/curso-show',[CursoController::class,'index'])->name('client.courses.create');
+    Route::post('/curso-store',[CursoController::class,'store'])->name('cursos.store');
     // Más rutas para el rol cliente...
 });

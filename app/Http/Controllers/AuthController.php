@@ -24,6 +24,8 @@ class AuthController extends Controller
         if (Auth::attempt(['correo' => $credentials['correo'], 'password' => $credentials['contrasena']])) {
             // Autenticación exitosa
             $usuario = Auth::user();
+            session(['usuario_id'=> $usuario->id]);
+            session(['usuario_nombre'=> $usuario->nombre]);
             // Redireccionar según el rol del usuario
         if ($usuario->rol->nombre === 'admin') {
             return redirect()->intended('/admin');
@@ -35,7 +37,7 @@ class AuthController extends Controller
             return redirect()->intended('/dashboard');
         }
         }
-
+       
         // Autenticación fallida
         return back()->withErrors(['correo' => 'Credenciales incorrectas.']);
     }
