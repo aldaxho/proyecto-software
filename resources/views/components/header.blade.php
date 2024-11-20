@@ -15,13 +15,16 @@
                     <li class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Cursos</a>
                         <ul class="dropdown-menu">
-                            @auth
-                            <li><a href="{{route('client.courses.create')}}" class="dropdown-item">Crear Curso</a></li>        
-                            @endauth
                             <li><a href="{{route('courses.index')}}" class="dropdown-item">Ver Cursos</a></li>
-                            <li><a href="account-security.html" class="dropdown-item">Tus Cursos</a></li>
+                            @auth
+                            <li><a href="{{route('client.courses.create')}}" class="dropdown-item">Crear Curso</a></li>
+                            <li><a href="{{route('mis-cursos')}}" class="dropdown-item">Tus Cursos</a></li>
                             <li><a href="account-security.html" class="dropdown-item">Cursos Comprados</a></li>
-                            
+                            @endauth
+
+
+
+
                         </ul>
                     </li>
                     <li class="nav-item dropdown">
@@ -41,7 +44,7 @@
                             <li><a href="account-details.html" class="dropdown-item">Tus Planes de Estudio</a></li>
                         </ul>
                     </li>
-                    
+
                     @auth
                     <li class="nav-item">
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
@@ -58,7 +61,7 @@
                         <a href="{{route('singin')}}" class="nav-link">Iniciar Sesion</a>
                     </li>
                     @endauth
-                    
+
                 </ul>
             </div>
 
@@ -72,7 +75,7 @@
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        
+
     </div>
 </header>
 <!-- Al final de tu archivo, antes de cerrar el body -->

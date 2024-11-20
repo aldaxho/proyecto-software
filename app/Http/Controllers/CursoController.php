@@ -20,6 +20,30 @@ class CursoController extends Controller
         return view('client.courses.create', compact('cursos','categorias','userId','userNombre'));
     }
 
+
+    public function cursosshow(){
+        $cursos= Curso::all();
+        return view('client.courses.index', compact('cursos'));
+    }
+
+
+
+    /*mis cursos creados por mi */
+    public function misCursos()
+    {
+        // Obtener el usuario autenticado con el guard 'usuarios'
+            $user = auth('usuarios')->user();
+             // Obtener los cursos creados por el usuario
+                $cursos = Curso::where('autor', $user->id)
+                ->with('categoria', 'materialesDidacticos')
+                ->get();
+
+            return view('client.courses.mis-cursos', compact('cursos'));
+    }
+
+
+
+
     /**
      * Show the form for creating a new resource.
      */
@@ -38,15 +62,15 @@ class CursoController extends Controller
             'nombre' => 'required|string|max:255',
             'descripcion' => 'required|string',
             'autor' => 'required|integer',
-            'categoria_id' => 'required|exists:categorias,id', 
+            'categoria_id' => 'required|exists:categorias,id',
             'precio' => 'required|numeric',
             'tiempo' => 'required|integer',
             'estado' => 'required|string|max:255',
             'imagen' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
-    
+
         $cursoData = $request->all();
-       
+
         // Manejar la carga de la imagen
         if ($request->hasFile('imagen')) {
             $imageName = time() . '.' . $request->imagen->extension();
@@ -55,20 +79,20 @@ class CursoController extends Controller
         }
        // dd($cursoData);
         Curso::create($cursoData);
-    
+
         return redirect()->route('client.courses.create')->with('success', 'Curso creado exitosamente');
     }
-    
+
 
     /**
      * Display the specified resource.
      */
-  
+
 
     /**
      * Show the form for editing the specified resource.
      */
-  
+
 
     /**
      * Update the specified resource in storage.

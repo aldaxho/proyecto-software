@@ -37,7 +37,7 @@ class AuthController extends Controller
             return redirect()->intended('/dashboard');
         }
         }
-       
+
         // Autenticación fallida
         return back()->withErrors(['correo' => 'Credenciales incorrectas.']);
     }
@@ -57,7 +57,7 @@ class AuthController extends Controller
             'contrasena' => 'required|string|min:8|confirmed',
             'fecha_nacimiento' => 'required|date',
         ]);
-    
+
         // Si la validación falla, regresamos con los errores
         if ($validator->fails()) {
             return response()->json([
@@ -65,11 +65,11 @@ class AuthController extends Controller
                 'errors' => $validator->errors(),
             ], 422);
         }
-    
+
         try {
             // Obtener el rol por defecto "cliente"
             $rolCliente = Rol::where('nombre', 'cliente')->first();
-    
+
             // Crear el usuario con el rol "cliente" por defecto
             $usuario = Usuario::create([
                 'nombre' => $request->input('nombre'),
@@ -79,21 +79,21 @@ class AuthController extends Controller
                 'fecha_nacimiento' => $request->input('fecha_nacimiento'),
                 'rol_id' => $rolCliente->id, // Asignar rol "cliente"
             ]);
-    
+
             // Autenticar al usuario automáticamente después del registro
             Auth::login($usuario);
-    
+
             // Redirigir al usuario al dashboard
-            return redirect()->intended('/dashboard');
-    
+            return redirect()->intended('/usuario');
+
         } catch (Exception $e) {
             Log::error('Error al registrar usuario: ' . $e->getMessage());
-    
+
             return response()->json([
                 'success' => false,
                 'message' => 'Ocurrió un error al registrar el usuario',
             ], 500);
         }
     }
-    
+
 }

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CursoController;
-
+use App\Http\Controllers\MaterialDidacticoController;
 
 Route::get('/', function () {
     return view('client.home.index');
@@ -26,9 +26,9 @@ Route::prefix('auth')->group(function () {
 
 // Rutas de cursos
 Route::prefix('courses')->group(function () {
-    Route::get('/index', function () {
-        return view('client.courses.index');
-    })->name('courses.index');
+    Route::get('/index-cursos', [CursoController::class, 'cursosshow'])->name('courses.index');
+    Route::get('/curso/{id}', [CursoController::class, 'show'])->name('curso.detalle');
+
 });
 
 // Ruta de registro
@@ -56,7 +56,7 @@ Route::middleware('roles:admin')->group(function () {
     Route::resource('usuarios', AdminController::class);
 
     //rutas de secciones
-  
+
     Route::get('/usuarios', [AdminController::class, 'usuarios'])->name('admin.secciones.usuarios');
     Route::get('/renovaciones', [AdminController::class, 'renovaciones'])->name('admin.secciones.renovaciones');
     Route::get('/subcripciones', [AdminController::class, 'subscripciones'])->name('admin.secciones.subscripciones');
@@ -78,9 +78,19 @@ Route::middleware('roles:cliente')->group(function () {
         return view('client.orders');
     })->name('client.orders');
 
-  
+
     //crud curso para cliente
+
     Route::get('/curso-show',[CursoController::class,'index'])->name('client.courses.create');
+    Route::get('/mis-cursos',[CursoController::class,'misCursos'])->name('mis-cursos');
     Route::post('/curso-store',[CursoController::class,'store'])->name('cursos.store');
     // Más rutas para el rol cliente...
+
+
+    //material didactico
+
+Route::get('cursos/{cursoId}/materiales', [MaterialDidacticoController::class, 'verMateriales'])->name('materiales.ver');
+Route::get('cursos/{cursoId}/materiales/crear', [MaterialDidacticoController::class, 'crearMaterial'])->name('material.create');
+Route::post('cursos/{cursoId}/materiales', [MaterialDidacticoController::class, 'guardarMaterial'])->name('materiales.guardar');
+
 });
