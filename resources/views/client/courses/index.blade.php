@@ -42,314 +42,41 @@
         <!-- Courses grid -->
         <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 gx-3 gx-md-4 mt-n2 mt-sm-0">
 
-            <!-- Item -->
-            <div class="col pb-1 pb-lg-3 mb-4">
-                <article class="card h-100 border-0 shadow-sm">
-                    <div class="position-relative">
-                        <a href="portfolio-single-course.html"
-                            class="d-block position-absolute w-100 h-100 top-0 start-0"></a>
-                        <span class="badge bg-success position-absolute top-0 start-0 zindex-2 mt-3 ms-3">Best Seller</span>
-                        <a href="#"
-                            class="btn btn-icon btn-light bg-white border-white btn-sm rounded-circle position-absolute top-0 end-0 zindex-2 me-3 mt-3"
-                            data-bs-toggle="tooltip" data-bs-placement="left" title="Save to Favorites">
-                            <i class="bx bx-bookmark"></i>
-                        </a>
-                        <img src="assets/img/portfolio/courses/01.jpg" class="card-img-top" alt="Image">
+                <!-- Aquí asume que has pasado la variable $cursos desde el controlador -->
+        @foreach ($cursos as $curso)
+        <div class="col pb-1 pb-lg-3 mb-4 d-sm-none d-lg-block">
+            <article class="card h-100 border-0 shadow-sm">
+                <div class="position-relative">
+                    <a href="{{ route('curso.detalle', $curso->id) }}" class="d-block position-absolute w-100 h-100 top-0 start-0"></a>
+                    <a href="#"
+                        class="btn btn-icon btn-light bg-white border-white btn-sm rounded-circle position-absolute top-0 end-0 zindex-2 me-3 mt-3"
+                        data-bs-toggle="tooltip" data-bs-placement="left" title="Save to Favorites">
+                        <i class="bx bx-bookmark"></i>
+                    </a>
+                    <img src="{{ $curso->imagen ? asset($curso->imagen) : 'assets/img/portfolio/courses/default.jpg' }}"
+                        class="card-img-top" alt="{{ $curso->nombre }}">
+                </div>
+                <div class="card-body pb-3">
+                    <h3 class="h5 mb-2">
+                        <a href="{{ route('curso.detalle', $curso->id) }}">{{ $curso->nombre }}</a>
+                    </h3>
+                    <p class="fs-sm mb-2">By {{ $curso->autornombre->nombre ?? 'Unknown Author' }}</p>
+                    <p class="fs-sm mb-2"> {{ $curso->descripcion?? 'No tiene Descripcion' }}</p>
+                    <p class="fs-lg fw-semibold text-primary mb-0">${{ number_format($curso->precio, 2) }}</p>
+                </div>
+                <div class="card-footer d-flex align-items-center fs-sm text-muted py-4">
+                    <div class="d-flex align-items-center me-4">
+                        <i class="bx bx-time fs-xl me-1"></i>
+                        {{ $curso->tiempo }} hours
                     </div>
-                    <div class="card-body pb-3">
-                        <h3 class="h5 mb-2">
-                            <a href="portfolio-single-course.html">Fullstack Web Developer Course from Scratch</a>
-                        </h3>
-                        <p class="fs-sm mb-2">By Albert Flores</p>
-                        <p class="fs-lg fw-semibold text-primary mb-0">$12.50</p>
+                    <div class="d-flex align-items-center">
+                        <i class="bx bx-like fs-xl me-1"></i>
+                        {{ $curso->calificacion }}% ({{ number_format($curso->calificacion / 10, 1) }}K)
                     </div>
-                    <div class="card-footer d-flex align-items-center fs-sm text-muted py-4">
-                        <div class="d-flex align-items-center me-4">
-                            <i class="bx bx-time fs-xl me-1"></i>
-                            220 hours
-                        </div>
-                        <div class="d-flex align-items-center">
-                            <i class="bx bx-like fs-xl me-1"></i>
-                            94% (4.2K)
-                        </div>
-                    </div>
-                </article>
-            </div>
-
-            <!-- Item -->
-            <div class="col pb-1 pb-lg-3 mb-4">
-                <article class="card h-100 border-0 shadow-sm">
-                    <div class="position-relative">
-                        <a href="portfolio-single-course.html"
-                            class="d-block position-absolute w-100 h-100 top-0 start-0"></a>
-                        <a href="#"
-                            class="btn btn-icon btn-light bg-white border-white btn-sm rounded-circle position-absolute top-0 end-0 zindex-2 me-3 mt-3"
-                            data-bs-toggle="tooltip" data-bs-placement="left" title="Save to Favorites">
-                            <i class="bx bx-bookmark"></i>
-                        </a>
-                        <img src="assets/img/portfolio/courses/02.jpg" class="card-img-top" alt="Image">
-                    </div>
-                    <div class="card-body pb-3">
-                        <h3 class="h5 mb-2">
-                            <a href="portfolio-single-course.html">HTML, CSS, JavaScript Web Developer</a>
-                        </h3>
-                        <p class="fs-sm mb-2">By Jenny Wilson &amp; Marvin McKinney</p>
-                        <p class="fs-lg fw-semibold text-primary mb-0">$15.99</p>
-                    </div>
-                    <div class="card-footer d-flex align-items-center fs-sm text-muted py-4">
-                        <div class="d-flex align-items-center me-4">
-                            <i class="bx bx-time fs-xl me-1"></i>
-                            160 hours
-                        </div>
-                        <div class="d-flex align-items-center">
-                            <i class="bx bx-like fs-xl me-1"></i>
-                            92% (3.1K)
-                        </div>
-                    </div>
-                </article>
-            </div>
-
-            <!-- Item -->
-            <div class="col pb-1 pb-lg-3 mb-4">
-                <article class="card h-100 border-0 shadow-sm">
-                    <div class="position-relative">
-                        <a href="portfolio-single-course.html"
-                            class="d-block position-absolute w-100 h-100 top-0 start-0"></a>
-                        <span class="badge bg-danger position-absolute top-0 start-0 zindex-2 mt-3 ms-3">Sale!</span>
-                        <a href="#"
-                            class="btn btn-icon btn-light bg-white border-white btn-sm rounded-circle position-absolute top-0 end-0 zindex-2 me-3 mt-3"
-                            data-bs-toggle="tooltip" data-bs-placement="left" title="Save to Favorites">
-                            <i class="bx bx-bookmark"></i>
-                        </a>
-                        <img src="assets/img/portfolio/courses/03.jpg" class="card-img-top" alt="Image">
-                    </div>
-                    <div class="card-body pb-3">
-                        <h3 class="h5 mb-2">
-                            <a href="portfolio-single-course.html">HTML, CSS, JavaScript Web Developer</a>
-                        </h3>
-                        <p class="fs-sm mb-2">By Robert Fox</p>
-                        <p class="text-muted mb-0"><span
-                                class="fs-lg fw-semibold text-danger me-2">$9.99</span><del>$44.99</del></p>
-                    </div>
-                    <div class="card-footer d-flex align-items-center fs-sm text-muted py-4">
-                        <div class="d-flex align-items-center me-4">
-                            <i class="bx bx-time fs-xl me-1"></i>
-                            210 hours
-                        </div>
-                        <div class="d-flex align-items-center">
-                            <i class="bx bx-like fs-xl me-1"></i>
-                            98% (2.7K)
-                        </div>
-                    </div>
-                </article>
-            </div>
-
-            <!-- Item -->
-            <div class="col pb-1 pb-lg-3 mb-4">
-                <article class="card h-100 border-0 shadow-sm">
-                    <div class="position-relative">
-                        <a href="portfolio-single-course.html"
-                            class="d-block position-absolute w-100 h-100 top-0 start-0"></a>
-                        <a href="#"
-                            class="btn btn-icon btn-light bg-white border-white btn-sm rounded-circle position-absolute top-0 end-0 zindex-2 me-3 mt-3"
-                            data-bs-toggle="tooltip" data-bs-placement="left" title="Save to Favorites">
-                            <i class="bx bx-bookmark"></i>
-                        </a>
-                        <img src="assets/img/portfolio/courses/04.jpg" class="card-img-top" alt="Image">
-                    </div>
-                    <div class="card-body pb-3">
-                        <h3 class="h5 mb-2">
-                            <a href="portfolio-single-course.html">iOS &amp; Swift - The Complete iOS App Development
-                                Course</a>
-                        </h3>
-                        <p class="fs-sm mb-2">By Marvin McKinney</p>
-                        <p class="fs-lg fw-semibold text-primary mb-0">$15.99</p>
-                    </div>
-                    <div class="card-footer d-flex align-items-center fs-sm text-muted py-4">
-                        <div class="d-flex align-items-center me-4">
-                            <i class="bx bx-time fs-xl me-1"></i>
-                            170 hours
-                        </div>
-                        <div class="d-flex align-items-center">
-                            <i class="bx bx-like fs-xl me-1"></i>
-                            95% (3.3K)
-                        </div>
-                    </div>
-                </article>
-            </div>
-
-            <!-- Item -->
-            <div class="col pb-1 pb-lg-3 mb-4">
-                <article class="card h-100 border-0 shadow-sm">
-                    <div class="position-relative">
-                        <a href="portfolio-single-course.html"
-                            class="d-block position-absolute w-100 h-100 top-0 start-0"></a>
-                        <span class="badge bg-success position-absolute top-0 start-0 zindex-2 mt-3 ms-3">Best
-                            Seller</span>
-                        <a href="#"
-                            class="btn btn-icon btn-light bg-white border-white btn-sm rounded-circle position-absolute top-0 end-0 zindex-2 me-3 mt-3"
-                            data-bs-toggle="tooltip" data-bs-placement="left" title="Save to Favorites">
-                            <i class="bx bx-bookmark"></i>
-                        </a>
-                        <img src="assets/img/portfolio/courses/05.jpg" class="card-img-top" alt="Image">
-                    </div>
-                    <div class="card-body pb-3">
-                        <h3 class="h5 mb-2">
-                            <a href="portfolio-single-course.html">Data Science &amp; Machine Learning with Python</a>
-                        </h3>
-                        <p class="fs-sm mb-2">By Esther Howard</p>
-                        <p class="fs-lg fw-semibold text-primary mb-0">$19.75</p>
-                    </div>
-                    <div class="card-footer d-flex align-items-center fs-sm text-muted py-4">
-                        <div class="d-flex align-items-center me-4">
-                            <i class="bx bx-time fs-xl me-1"></i>
-                            150 hours
-                        </div>
-                        <div class="d-flex align-items-center">
-                            <i class="bx bx-like fs-xl me-1"></i>
-                            96% (3.8K)
-                        </div>
-                    </div>
-                </article>
-            </div>
-
-            <!-- Item -->
-            <div class="col pb-1 pb-lg-3 mb-4">
-                <article class="card h-100 border-0 shadow-sm">
-                    <div class="position-relative">
-                        <a href="portfolio-single-course.html"
-                            class="d-block position-absolute w-100 h-100 top-0 start-0"></a>
-                        <a href="#"
-                            class="btn btn-icon btn-light bg-white border-white btn-sm rounded-circle position-absolute top-0 end-0 zindex-2 me-3 mt-3"
-                            data-bs-toggle="tooltip" data-bs-placement="left" title="Save to Favorites">
-                            <i class="bx bx-bookmark"></i>
-                        </a>
-                        <img src="assets/img/portfolio/courses/06.jpg" class="card-img-top" alt="Image">
-                    </div>
-                    <div class="card-body pb-3">
-                        <h3 class="h5 mb-2">
-                            <a href="portfolio-single-course.html">Creative CSS Drawing Course: Make Art With CSS</a>
-                        </h3>
-                        <p class="fs-sm mb-2">By Robert Fox</p>
-                        <p class="fs-lg fw-semibold text-primary mb-0">$17.99</p>
-                    </div>
-                    <div class="card-footer d-flex align-items-center fs-sm text-muted py-4">
-                        <div class="d-flex align-items-center me-4">
-                            <i class="bx bx-time fs-xl me-1"></i>
-                            110 hours
-                        </div>
-                        <div class="d-flex align-items-center">
-                            <i class="bx bx-like fs-xl me-1"></i>
-                            92% (5.3K)
-                        </div>
-                    </div>
-                </article>
-            </div>
-
-            <!-- Item -->
-            <div class="col pb-1 pb-lg-3 mb-4">
-                <article class="card h-100 border-0 shadow-sm">
-                    <div class="position-relative">
-                        <a href="portfolio-single-course.html"
-                            class="d-block position-absolute w-100 h-100 top-0 start-0"></a>
-                        <a href="#"
-                            class="btn btn-icon btn-light bg-white border-white btn-sm rounded-circle position-absolute top-0 end-0 zindex-2 me-3 mt-3"
-                            data-bs-toggle="tooltip" data-bs-placement="left" title="Save to Favorites">
-                            <i class="bx bx-bookmark"></i>
-                        </a>
-                        <img src="assets/img/portfolio/courses/07.jpg" class="card-img-top" alt="Image">
-                    </div>
-                    <div class="card-body pb-3">
-                        <h3 class="h5 mb-2">
-                            <a href="portfolio-single-course.html">Blender Character Creator v2.0 for Video Games
-                                Design</a>
-                        </h3>
-                        <p class="fs-sm mb-2">By Ralph Edwards</p>
-                        <p class="fs-lg fw-semibold text-primary mb-0">$25.00</p>
-                    </div>
-                    <div class="card-footer d-flex align-items-center fs-sm text-muted py-4">
-                        <div class="d-flex align-items-center me-4">
-                            <i class="bx bx-time fs-xl me-1"></i>
-                            160 hours
-                        </div>
-                        <div class="d-flex align-items-center">
-                            <i class="bx bx-like fs-xl me-1"></i>
-                            93% (4.5K)
-                        </div>
-                    </div>
-                </article>
-            </div>
-
-            <!-- Item -->
-            <div class="col pb-1 pb-lg-3 mb-4">
-                <article class="card h-100 border-0 shadow-sm">
-                    <div class="position-relative">
-                        <a href="portfolio-single-course.html"
-                            class="d-block position-absolute w-100 h-100 top-0 start-0"></a>
-                        <span class="badge bg-danger position-absolute top-0 start-0 zindex-2 mt-3 ms-3">Sale!</span>
-                        <a href="#"
-                            class="btn btn-icon btn-light bg-white border-white btn-sm rounded-circle position-absolute top-0 end-0 zindex-2 me-3 mt-3"
-                            data-bs-toggle="tooltip" data-bs-placement="left" title="Save to Favorites">
-                            <i class="bx bx-bookmark"></i>
-                        </a>
-                        <img src="assets/img/portfolio/courses/08.jpg" class="card-img-top" alt="Image">
-                    </div>
-                    <div class="card-body pb-3">
-                        <h3 class="h5 mb-2">
-                            <a href="portfolio-single-course.html">The Ultimate Guide to 2D Mobile Game Development with
-                                Unity</a>
-                        </h3>
-                        <p class="fs-sm mb-2">By Albert Flores</p>
-                        <p class="text-muted mb-0"><span
-                                class="fs-lg fw-semibold text-danger me-2">$12.99</span><del>$34.99</del></p>
-                    </div>
-                    <div class="card-footer d-flex align-items-center fs-sm text-muted py-4">
-                        <div class="d-flex align-items-center me-4">
-                            <i class="bx bx-time fs-xl me-1"></i>
-                            230 hours
-                        </div>
-                        <div class="d-flex align-items-center">
-                            <i class="bx bx-like fs-xl me-1"></i>
-                            97% (4.1K)
-                        </div>
-                    </div>
-                </article>
-            </div>
-
-            <!-- Item -->
-            <div class="col pb-1 pb-lg-3 mb-4 d-sm-none d-lg-block">
-                <article class="card h-100 border-0 shadow-sm">
-                    <div class="position-relative">
-                        <a href="portfolio-single-course.html"
-                            class="d-block position-absolute w-100 h-100 top-0 start-0"></a>
-                        <a href="#"
-                            class="btn btn-icon btn-light bg-white border-white btn-sm rounded-circle position-absolute top-0 end-0 zindex-2 me-3 mt-3"
-                            data-bs-toggle="tooltip" data-bs-placement="left" title="Save to Favorites">
-                            <i class="bx bx-bookmark"></i>
-                        </a>
-                        <img src="assets/img/portfolio/courses/09.jpg" class="card-img-top" alt="Image">
-                    </div>
-                    <div class="card-body pb-3">
-                        <h3 class="h5 mb-2">
-                            <a href="portfolio-single-course.html">Learn JMETER from Scratch on Live Apps-Performance
-                                Testing</a>
-                        </h3>
-                        <p class="fs-sm mb-2">By Jenny Wilson</p>
-                        <p class="fs-lg fw-semibold text-primary mb-0">$14.50</p>
-                    </div>
-                    <div class="card-footer d-flex align-items-center fs-sm text-muted py-4">
-                        <div class="d-flex align-items-center me-4">
-                            <i class="bx bx-time fs-xl me-1"></i>
-                            120 hours
-                        </div>
-                        <div class="d-flex align-items-center">
-                            <i class="bx bx-like fs-xl me-1"></i>
-                            92% (3.8K)
-                        </div>
-                    </div>
-                </article>
-            </div>
+                </div>
+            </article>
         </div>
+        @endforeach
 
         <!-- Pagination: Basic example -->
         <nav class="pb-5" aria-label="Page navigation example">
