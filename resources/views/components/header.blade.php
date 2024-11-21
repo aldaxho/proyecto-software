@@ -28,7 +28,9 @@
                         </ul>
                     </li>
                     <li class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Subscipciones</a>
+                        {{-- <a href="{{route('suscripcion')}}" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Subscipciones</a> --}}
+                        <a href="" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Subscipciones</a>
+
                         <ul class="dropdown-menu">
                             <li><a href="account-details.html" class="dropdown-item">Subscribirse</a></li>
                             <li><a href="account-details.html" class="dropdown-item">Tus Subscripciones</a></li>
@@ -47,10 +49,10 @@
 
                     @auth
                     <li class="nav-item">
+                        
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                             @csrf
-                        </form>
-
+                        </form>                        
                         <a href="#" class="nav-link" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                             Cerrar Sesión
                         </a>
