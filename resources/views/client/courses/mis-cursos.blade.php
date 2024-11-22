@@ -15,15 +15,12 @@
                             <p><strong>Estado:</strong> {{ $curso->estado }}</p>
 
                             <!-- Condición para materiales didácticos -->
-                            @if ($curso->materialesDidacticos->isEmpty())
-                                <a href="{{ route('material.create', $curso->id) }}" class="btn btn-primary">
-                                    Agregar Material Didáctico
-                                </a>
-                            @else
-                                <a href="{{ route('curso.clientes', $curso->id) }}" class="btn btn-success">
-                                    Ver Clientes
-                                </a>
-                            @endif
+                          
+                            <a href="{{ route('curso.detalles', $curso->id) }}" class="btn btn-success">
+                                Ver Detalles
+                            </a>
+
+
                         </div>
                     </div>
                 </div>

@@ -93,4 +93,7 @@ Route::get('cursos/{cursoId}/materiales', [MaterialDidacticoController::class, '
 Route::get('cursos/{cursoId}/materiales/crear', [MaterialDidacticoController::class, 'crearMaterial'])->name('material.create');
 Route::post('cursos/{cursoId}/materiales', [MaterialDidacticoController::class, 'guardarMaterial'])->name('materiales.guardar');
 
+
+Route::get('/curso/{id}/detalles', [CursoController::class, 'detalles'])->name('curso.detalles');
+
 });
