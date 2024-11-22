@@ -5,6 +5,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CursoController;
 use App\Http\Controllers\MaterialDidacticoController;
+use App\Http\Controllers\SuscripcionController;
 
 Route::get('/', function () {
     return view('client.home.index');
@@ -93,4 +94,12 @@ Route::get('cursos/{cursoId}/materiales', [MaterialDidacticoController::class, '
 Route::get('cursos/{cursoId}/materiales/crear', [MaterialDidacticoController::class, 'crearMaterial'])->name('material.create');
 Route::post('cursos/{cursoId}/materiales', [MaterialDidacticoController::class, 'guardarMaterial'])->name('materiales.guardar');
 
+
+
 });
+
+Route::get('plan', [SuscripcionController::class, 'plan'])->name('plan');
+Route::get('pago/{precio}', [SuscripcionController::class, 'pago'])->name('pago');
+Route::get('/stripe/{precio}', [SuscripcionController::class, 'stripe']);
+Route::post('stripe/{precio}', [SuscripcionController::class, 'stripePost'])
+    ->name('stripe.post');

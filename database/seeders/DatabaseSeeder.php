@@ -22,6 +22,7 @@ class DatabaseSeeder extends Seeder
     //        MetodosPagoTableSeeder::class,
             RenovacionesTableSeeder::class,
    //         CursosTableSeeder::class,
+            SuscripcionSeeder::class,
         ]);
     }
 }
