@@ -96,6 +96,9 @@ Route::post('cursos/{cursoId}/materiales', [MaterialDidacticoController::class, 
 
 
 
+Route::get('/curso/{id}/detalles', [CursoController::class, 'detalles'])->name('curso.detalles');
+
+
 });
 
 Route::get('plan', [SuscripcionController::class, 'plan'])->name('plan');
