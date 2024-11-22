@@ -10,6 +10,14 @@
         </div>
     @endif
 
+
+    @if (Session::has('error'))
+        <div class="alert alert-danger text-center">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+            <p>{{ Session::get('error') }}</p>
+        </div>
+    @endif
+
     <!-- Page content -->
     <section class="container">
 

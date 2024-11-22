@@ -39,7 +39,7 @@
             <div class="card highlight">
                 <h3>Suscripción PRO Anual</h3>
                 <span class="price">700 <span class="currency">USD</span></span>
-                <?php $precio = 300; ?>
+                <?php $precio = 700; ?>
                 <a class="boton" href="{{ url('stripe', $precio) }}">Suscribirme ahora</a>
                 {{-- <a href="{{ url('pago', $precio) }}">Suscribirme ahora</a>   --}}
                 <p>Adquiere 1 año entero de suscripción al precio de 11 meses. Acceso ilimitado a toda la plataforma,
