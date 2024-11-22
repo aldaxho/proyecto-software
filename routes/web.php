@@ -103,3 +103,5 @@ Route::get('pago/{precio}', [SuscripcionController::class, 'pago'])->name('pago'
 Route::get('/stripe/{precio}', [SuscripcionController::class, 'stripe']);
 Route::post('stripe/{precio}', [SuscripcionController::class, 'stripePost'])
     ->name('stripe.post');
+
+Route::get('/bitacora', [SuscripcionController::class, 'bitacora']);

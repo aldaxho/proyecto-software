@@ -36,12 +36,12 @@
                             id="payment-form">
                         @csrf
     
-                        <div class='form-row row'>
+                        {{-- <div class='form-row row'>
                             <div class='col-xs-12 form-group required'>
                                 <label class='control-label'>Nombre</label> <input
                                     class='form-control' size='4' type='text'>
                             </div>
-                        </div> 
+                        </div>  --}}
     
                         <div class='form-row row'>
                             <div class='col-xs-12 form-group card required'>
