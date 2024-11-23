@@ -32,7 +32,7 @@ class CursoController extends Controller
     public function misCursos()
     {
         // Obtener el usuario autenticado con el guard 'usuarios'
-            $user = auth('usuarios')->user();
+        $user = Auth::user();
              // Obtener los cursos creados por el usuario
                 $cursos = Curso::where('autor', $user->id)
                 ->with('categoria', 'materialesDidacticos')
@@ -41,6 +41,19 @@ class CursoController extends Controller
             return view('client.courses.mis-cursos', compact('cursos'));
     }
 
+    public function detalles($id)
+    {
+        // Obtener el curso por ID
+        $curso = Curso::with(['usuarios', 'materialesDidacticos'])->findOrFail($id);
+
+        // Usuarios inscritos (si tienes una relación de muchos a muchos entre curso y usuario)
+       // $usuarios = $curso->usuarios;
+
+        // Materiales didácticos asociados al curso
+        $materiales = $curso->materialesDidacticos;
+
+        return view('client.courses.detalles', compact('curso', 'materiales'));
+    }
 
 
 

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+
 use Illuminate\Http\Request;
 
 use App\Models\Plan;
@@ -12,6 +13,7 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Session;
 use App\Models\Bitacora;
+
 
 
 class SuscripcionController extends Controller
@@ -24,7 +26,9 @@ class SuscripcionController extends Controller
     public function stripe($precio){
         try {
             if (Auth::id()) {
+
                 return view('suscripciones.stripe', compact('precio'));
+
             } else {
                 return redirect()->route('singin'); // Redirige a la ruta del formulario de login
             }
@@ -81,7 +85,6 @@ class SuscripcionController extends Controller
             $suscripcion->save();
 
             $bitacora = new Bitacora();
-
             $bitacora->descripcion = "Creación de Suscripcion exitosa";
             $bitacora->usuario_id = $usuario->id;
             $bitacora->usuario = $usuario->nombre;
@@ -102,11 +105,13 @@ class SuscripcionController extends Controller
         }
     }
 
+
     public function bitacora()
     {
         $bitacora = Bitacora::all();
         $suscripcion = Suscripcion::all();
         return view('suscripciones.bitacora', compact('bitacora', 'suscripcion'));
     }
+
 
 }
