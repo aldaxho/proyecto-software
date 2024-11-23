@@ -12,6 +12,7 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Session;
 use App\Models\Bitacora;
+use Illuminate\Support\Facades\DB;
 
 
 class SuscripcionController extends Controller
@@ -108,5 +109,42 @@ class SuscripcionController extends Controller
         $suscripcion = Suscripcion::all();
         return view('suscripciones.bitacora', compact('bitacora', 'suscripcion'));
     }
+
+    public function estadistica()
+    {
+        // Obtener el número de suscripciones por plan
+        $suscripcionesPorPlan = Suscripcion::select('plan_id', \DB::raw('COUNT(*) as total'))
+            ->groupBy('plan_id')
+            ->with('plan') // Relación con la tabla de planes(Es el Modelo de laravel)
+            ->get();
+    
+        // Obtener ingresos generados por cada plan
+        $ingresosPorPlan = Suscripcion::select('plan_id', \DB::raw('SUM(plans.precio) as ingresos'))
+            ->join('plans', 'suscripcions.plan_id', '=', 'plans.id') // Unir con la tabla de planes
+            ->groupBy('plan_id')
+            ->get();
+    
+        // Consolidar datos en un formato adecuado para el gráfico
+        $estadisticas = $suscripcionesPorPlan->map(function ($suscripcion) use ($ingresosPorPlan) {
+            $ingreso = $ingresosPorPlan->firstWhere('plan_id', $suscripcion->plan_id);
+        
+            return [
+                'plan' => $suscripcion->plan->nombre ?? 'Sin Nombre',
+                'total' => $suscripcion->total ?? 0,
+                'ingresos' => isset($ingreso->ingresos) ? (float) $ingreso->ingresos : 0, // Convertir a número
+            ];
+        });
+        
+        // @dd($estadisticas);
+        
+        // Devolver los datos a la vista
+        return view('suscripciones.estadistica', [          
+            'estadisticas' => $estadisticas, // Datos consolidados
+        ]);
+    }
+
+
+    
+
 
 }
