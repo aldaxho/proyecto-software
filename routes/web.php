@@ -109,3 +109,8 @@ Route::post('stripe/{precio}', [SuscripcionController::class, 'stripePost'])
 
 Route::get('/bitacora', [SuscripcionController::class, 'bitacora']);
 
+
+Route::get('/estadistica', [SuscripcionController::class, 'estadistica']);
+
+Route::get('/admin/suscripciones/estadisticas', [SuscripcionController::class, 'estadisticasSuscripciones'])->name('suscripciones.estadisticas');
+
