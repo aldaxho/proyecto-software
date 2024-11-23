@@ -20,13 +20,14 @@ class SuscripcionController extends Controller
 {
     public function plan(){
         $plan = Plan::all();
-        return view('suscripcion/plan', compact('plan'));
+        return view('suscripciones/plan', compact('plan'));
     } 
 
     public function stripe($precio){
         try {
             if (Auth::id()) {
-                return view('suscripcion.stripe', compact('precio'));
+
+                return view('suscripciones.stripe', compact('precio'));
 
             } else {
                 return redirect()->route('singin'); // Redirige a la ruta del formulario de login
@@ -109,7 +110,7 @@ class SuscripcionController extends Controller
     {
         $bitacora = Bitacora::all();
         $suscripcion = Suscripcion::all();
-        return view('suscripcion.bitacora', compact('bitacora', 'suscripcion'));
+        return view('suscripciones.bitacora', compact('bitacora', 'suscripcion'));
     }
 
 
