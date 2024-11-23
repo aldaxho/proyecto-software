@@ -41,7 +41,7 @@ Route::post('/register', [AuthController::class, 'register'])->name('register.su
 
 // Rutas para administradores
 Route::middleware('roles:admin')->group(function () {
-    Route::get('/admin', function () {
+    Route::get('/administrador', function () {
         return view('admin.dashboard');
     })->name('admin.dashboard');
 

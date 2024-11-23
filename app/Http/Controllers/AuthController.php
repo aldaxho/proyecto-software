@@ -28,7 +28,7 @@ class AuthController extends Controller
                 session(['usuario_nombre'=> $usuario->nombre]);
                 // Redireccionar según el rol del usuario
             if ($usuario->rol->nombre === 'admin') {
-                return redirect()->intended('/usuarios');
+                return redirect()->intended('/administrador');
             } elseif ($usuario->rol->nombre === 'cliente') {
                 return redirect()->intended('/usuario');
             } elseif ($usuario->rol->nombre === 'editor') {
