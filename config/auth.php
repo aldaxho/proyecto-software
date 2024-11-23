@@ -40,10 +40,7 @@ return [
             'driver' => 'session',
             'provider' => 'usuarios',
         ],
-        'usuarios' => [  // Aquí definimos el guard 'usuarios'
-        'driver' => 'session',
-        'provider' => 'usuarios',  // Debe usar el provider que definiste
-    ],
+
     ],
 
     /*

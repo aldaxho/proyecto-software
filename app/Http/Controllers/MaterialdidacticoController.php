@@ -5,7 +5,7 @@ use App\Models\Curso;
 use App\Models\MaterialDidactico;
 use Illuminate\Http\Request;
 
-class MaterialDidacticoController extends Controller
+class MaterialdidacticoController extends Controller
 {
     // Mostrar los materiales de un curso
     public function verMateriales($cursoId)

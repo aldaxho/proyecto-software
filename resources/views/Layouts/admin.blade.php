@@ -70,7 +70,7 @@
             <li class="nav-item">
                 <a class="nav-link" href="{{ url('/bitacora') }}">Bitacora</a>
             </li>
-            
+
             <!-- Botón de cerrar sesión -->
             <li class="nav-item">
                 <a href="#" class="nav-link text-danger" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">

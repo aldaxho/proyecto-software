@@ -94,15 +94,23 @@ Route::get('cursos/{cursoId}/materiales', [MaterialDidacticoController::class, '
 Route::get('cursos/{cursoId}/materiales/crear', [MaterialDidacticoController::class, 'crearMaterial'])->name('material.create');
 Route::post('cursos/{cursoId}/materiales', [MaterialDidacticoController::class, 'guardarMaterial'])->name('materiales.guardar');
 
+
+
+Route::get('/curso/{id}/detalles', [CursoController::class, 'detalles'])->name('curso.detalles');
+
+
 });
 
 Route::get('plan', [SuscripcionController::class, 'plan'])->name('plan');
+
 Route::get('/stripe/{precio}', [SuscripcionController::class, 'stripe']);
 Route::post('stripe/{precio}', [SuscripcionController::class, 'stripePost'])
     ->name('stripe.post');
 
 Route::get('/bitacora', [SuscripcionController::class, 'bitacora']);
 
+
 Route::get('/estadistica', [SuscripcionController::class, 'estadistica']);
 
 Route::get('/admin/suscripciones/estadisticas', [SuscripcionController::class, 'estadisticasSuscripciones'])->name('suscripciones.estadisticas');
+
