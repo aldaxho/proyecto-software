@@ -111,15 +111,16 @@ am5.ready(function () {
 
 
 
-@endsection
+@endsection 
 
 {{-- -------------------------------------------------------- --}}
 
 {{-- @extends('Layouts.admin')
 
-{{-- @section('content') --}}
+@section('content') --}}
 
 <!-- Styles -->
+
 {{-- <style>
     #chartdiv {
         width: 100%;
@@ -219,6 +220,6 @@ am5.ready(function() {
 </script>
 
 <!-- HTML -->
-<div id="chartdiv"></div> --}}
+<div id="chartdiv"></div>  --}}
 
-{{-- @endsection --}} 
+{{-- @endsection  --}}
