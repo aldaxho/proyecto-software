@@ -30,7 +30,7 @@
                     <li class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Subscipciones</a>
                         <ul class="dropdown-menu">
-                            <li><a href="account-details.html" class="dropdown-item">Subscribirse</a></li>
+                            <li><a href="{{route('plan')}}" class="dropdown-item">Subscribirse</a></li>
                             <li><a href="account-details.html" class="dropdown-item">Tus Subscripciones</a></li>
 
                         </ul>
