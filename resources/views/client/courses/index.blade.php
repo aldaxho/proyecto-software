@@ -3,6 +3,7 @@
 
 @section('content')
 
+
     @if (Session::has('success'))
         <div class="alert alert-success text-center">
             <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
@@ -18,9 +19,9 @@
         </div>
     @endif
 
+
     <!-- Page content -->
     <section class="container">
-
 
         <!-- Breadcrumb -->
         <nav class="pt-4 mt-lg-3" aria-label="breadcrumb">

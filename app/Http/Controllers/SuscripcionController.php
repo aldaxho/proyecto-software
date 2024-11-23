@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Controller;
+
 use Illuminate\Http\Request;
 
 use App\Models\Plan;
@@ -18,13 +20,14 @@ class SuscripcionController extends Controller
 {
     public function plan(){
         $plan = Plan::all();
-        return view('plan/index', compact('plan'));
-    }       
+        return view('suscripcion/plan', compact('plan'));
+    } 
 
-    public function stripe($precio){  
+    public function stripe($precio){
         try {
-            if (Auth::id()) { 
-                return view('stripe.inicio', compact('precio'));
+            if (Auth::id()) {
+                return view('suscripcion.stripe', compact('precio'));
+
             } else {
                 return redirect()->route('singin'); // Redirige a la ruta del formulario de login
             }
@@ -81,12 +84,11 @@ class SuscripcionController extends Controller
             $suscripcion->save();
 
             $bitacora = new Bitacora();
-
             $bitacora->descripcion = "Creación de Suscripcion exitosa";
             $bitacora->usuario_id = $usuario->id;
             $bitacora->usuario = $usuario->nombre;
             $bitacora->direccion_ip = $request->ip();
-            $bitacora->navegador = $request->header( 'user-agent');    
+            $bitacora->navegador = $request->header( 'user-agent');
             $bitacora->tabla = "Suscripcions";
             $bitacora->registro_id = $suscripcion->id;
             $bitacora->fecha_hora = $suscripcion->fecha_inicio;
@@ -102,14 +104,13 @@ class SuscripcionController extends Controller
         }
     }
 
-     public function bitacora()
+
+    public function bitacora()
     {
         $bitacora = Bitacora::all();
-        $empleados = Suscripcion::all();
-        return view('bitacora.inicio', compact('bitacora', 'empleados'));
+        $suscripcion = Suscripcion::all();
+        return view('suscripcion.bitacora', compact('bitacora', 'suscripcion'));
     }
-
-
 
 
 }

@@ -102,9 +102,10 @@ Route::get('/curso/{id}/detalles', [CursoController::class, 'detalles'])->name('
 });
 
 Route::get('plan', [SuscripcionController::class, 'plan'])->name('plan');
-Route::get('pago/{precio}', [SuscripcionController::class, 'pago'])->name('pago');
+
 Route::get('/stripe/{precio}', [SuscripcionController::class, 'stripe']);
 Route::post('stripe/{precio}', [SuscripcionController::class, 'stripePost'])
     ->name('stripe.post');
 
 Route::get('/bitacora', [SuscripcionController::class, 'bitacora']);
+
