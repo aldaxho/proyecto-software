@@ -1,47 +1,90 @@
 @extends('layouts.client')
 
 @section('content')
-<div class="container">
-    <h1>Detalles del Curso: {{ $curso->nombre }}</h1>
+<div class="container mt-5">
+    <h1 class="mb-4">Detalles del Curso: {{ $curso->nombre }}</h1>
 
+    @if (session('success'))
+        <div class="alert alert-success mt-3">
+            {{ session('success') }}
+        </div>
+    @endif
+
+    <!-- Botón para abrir el modal -->
+    <button class="btn btn-primary mb-4" data-bs-toggle="modal" data-bs-target="#agregarMaterialModal">
+        Agregar Material Didáctico
+    </button>
+
+    <!-- Diseño en dos columnas -->
     <div class="row">
-        <!-- Sección de Usuarios -->
+        <!-- Columna izquierda: Material Didáctico -->
         <div class="col-md-6">
-            <h2>Usuarios Inscritos</h2>
-            @if ($usuarios->isEmpty())
-                <p>No hay usuarios inscritos en este curso.</p>
-            @else
-                <ul class="list-group">
-                    @foreach ($usuarios as $usuario)
-                        <li class="list-group-item">
-                            {{ $usuario->nombre }} - {{ $usuario->correo }}
-                        </li>
-                    @endforeach
-                </ul>
-            @endif
+            <h2 class="text-primary">Materiales Didácticos</h2>
+            <ul class="list-group">
+                @forelse ($materiales as $material)
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        {{ $material->descripcion }}
+                        <a href="{{ $material->archivo }}" target="_blank" class="btn btn-sm btn-success">Descargar</a>
+                    </li>
+                @empty
+                    <li class="list-group-item">No hay materiales disponibles.</li>
+                @endforelse
+            </ul>
         </div>
 
-        <!-- Sección de Material Didáctico -->
+        <!-- Columna derecha: Usuarios inscritos -->
         <div class="col-md-6">
-            <h2>Material Didáctico</h2>
-            @if ($materiales->isEmpty())
-                <p>No hay material didáctico para este curso.</p>
-            @else
-                <ul class="list-group">
-                    @foreach ($materiales as $material)
-                        <li class="list-group-item">
-                            <a href="{{ asset('storage/' . $material->archivo) }}" target="_blank">
-                                {{ $material->descripcion }} ({{ $material->tipo }})
-                            </a>
-                        </li>
-                    @endforeach
-                </ul>
-            @endif
+            <h2 class="text-primary">Usuarios Inscritos</h2>
+            <ul class="list-group">
+                @forelse ($usuarios as $usuario)
+                    <li class="list-group-item">
+                        {{ $usuario->nombre }} ({{ $usuario->correo }})
+                    </li>
+                @empty
+                    <li class="list-group-item">No hay usuarios inscritos aún.</li>
+                @endforelse
+            </ul>
+        </div>
+    </div>
+</div>
 
-            <!-- Botón para agregar nuevo material -->
-            <a href="{{ route('material.create', $curso->id) }}" class="btn btn-primary mt-3">
-                Agregar Material Didáctico
-            </a>
+<!-- Modal para agregar material didáctico -->
+<div class="modal fade" id="agregarMaterialModal" tabindex="-1" aria-labelledby="agregarMaterialModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="agregarMaterialModalLabel">Agregar Material Didáctico</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form action="{{ route('material.create') }}" method="POST" enctype="multipart/form-data">
+                @csrf
+                <div class="modal-body">
+                    <input type="hidden" name="curso_id" value="{{ $curso->id }}">
+
+                    <div class="mb-3">
+                        <label for="descripcion" class="form-label">Descripción</label>
+                        <input type="text" class="form-control" id="descripcion" name="descripcion" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="archivo" class="form-label">Archivo</label>
+                        <input type="file" class="form-control" id="archivo" name="archivo" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="tipo" class="form-label">Tipo</label>
+                        <select class="form-select" id="tipo" name="tipo" required>
+                            <option value="PDF">PDF</option>
+                            <option value="Video">Video</option>
+                            <option value="Otro">Otro</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Guardar</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>

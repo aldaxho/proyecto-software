@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Curso;
 use App\Models\Categoria;
+use App\Models\Usuario;
 use Illuminate\Support\Facades\Auth;
 class CursoController extends Controller
 {
@@ -43,18 +44,40 @@ class CursoController extends Controller
 
     public function detalles($id)
     {
-        // Obtener el curso por ID
+        // Obtener el curso por ID, incluyendo los usuarios y materiales didácticos
         $curso = Curso::with(['usuarios', 'materialesDidacticos'])->findOrFail($id);
 
-        // Usuarios inscritos (si tienes una relación de muchos a muchos entre curso y usuario)
-       // $usuarios = $curso->usuarios;
+        // Usuarios que compraron el curso
+        $usuarios = $curso->usuarios;
 
         // Materiales didácticos asociados al curso
         $materiales = $curso->materialesDidacticos;
 
-        return view('client.courses.detalles', compact('curso', 'materiales'));
+        return view('client.courses.detalles', compact('curso', 'usuarios', 'materiales'));
     }
 
+    public function show($id)
+    {
+        $curso = Curso::with('materiales')->findOrFail($id);
+
+        $usuario = Auth::user();
+        if (!$usuario) {
+            return redirect()->route('login')->with('error', 'Debes iniciar sesión para acceder a los cursos.');
+        }
+
+        // Verificar si el usuario ha comprado el curso
+        $haCompradoCurso = $usuario->compras()->where('curso_id', $curso->id)->exists();
+
+        // Verificar si el usuario es suscriptor
+        $esSuscriptor = $usuario->es_suscriptor; // Cambia esto según tu lógica de suscripciones
+
+        // Pasar datos a la vista
+        return view('client.courses.show', [
+            'curso' => $curso,
+            'haCompradoCurso' => $haCompradoCurso,
+            'esSuscriptor' => $esSuscriptor,
+        ]);
+    }
 
 
     /**

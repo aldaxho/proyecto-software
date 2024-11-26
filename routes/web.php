@@ -91,8 +91,20 @@ Route::middleware('roles:cliente')->group(function () {
     //material didactico
 
 Route::get('cursos/{cursoId}/materiales', [MaterialDidacticoController::class, 'verMateriales'])->name('materiales.ver');
-Route::get('cursos/{cursoId}/materiales/crear', [MaterialDidacticoController::class, 'crearMaterial'])->name('material.create');
+
+Route::post('/material-didactico/store', [MaterialDidacticoController::class, 'store'])->name('material.create');
+
+
 Route::post('cursos/{cursoId}/materiales', [MaterialDidacticoController::class, 'guardarMaterial'])->name('materiales.guardar');
+
+
+
+
+Route::get('/curso/{id}/detalles', [CursoController::class, 'detalles'])->name('curso.detalles');
+//Route::get('/curso/{id}/detalles', [CursoController::class, 'show'])->name('curso.show');
+
+Route::get('/curso/{id}/comprar', [CursoController::class, 'comprar'])->name('curso.comprar');
+
 
 
 });
@@ -100,10 +112,13 @@ Route::post('cursos/{cursoId}/materiales', [MaterialDidacticoController::class, 
 Route::get('plan', [SuscripcionController::class, 'plan'])->name('plan');
 Route::get('/stripe/{precio}', [SuscripcionController::class, 'stripe']);
 Route::post('stripe/{precio}', [SuscripcionController::class, 'stripePost'])
+    ->name('stripe.post');
+
 ->name('stripe.post');
 
 Route::get('/bitacora', [SuscripcionController::class, 'bitacora']);
 
 Route::get('/estadistica', [SuscripcionController::class, 'estadistica']);
+
 
 

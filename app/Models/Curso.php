@@ -22,7 +22,7 @@ class Curso extends Model
         'fecha_creacion',
         'imagen',
     ];
-  
+
     // Relación con el modelo User
     public function autornombre()
     {
@@ -37,5 +37,30 @@ class Curso extends Model
     {
         return $this->hasMany(MaterialDidactico::class, 'curso_id');
     }
+  // Relación con el modelo Compra (usuarios que compraron el curso)
+public function compras()
+{
+    return $this->hasMany(Compra::class, 'curso_id');
+}
+
+// Relación con el modelo Calificacion (calificaciones del curso)
+public function calificaciones()
+{
+    return $this->hasMany(Calificacion::class, 'curso_id');
+}
+
+// Relación con el modelo PlanEstudio (temas asociados al curso)
+public function planEstudio()
+{
+    return $this->hasMany(PlanEstudio::class, 'curso_id');
+}
+public function usuarios()
+{
+    return $this->belongsToMany(Usuario::class, 'compras', 'curso_id', 'usuario_id');
+}
+public function materiales()
+{
+    return $this->hasMany(MaterialDidactico::class, 'curso_id'); // Ajusta 'curso_id' si es diferente
+}
 
 }
