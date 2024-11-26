@@ -15,35 +15,29 @@ class MaterialdidacticoController extends Controller
         return view('client.materiales.cursos-material', compact('curso'));
     }
 
-    // Mostrar formulario para agregar un nuevo material
-    public function crearMaterial($cursoId)
+    public function store(Request $request)
     {
-        $curso = Curso::findOrFail($cursoId);
-
-        return view('materiales.crear', compact('curso'));
-    }
-
-    // Guardar un nuevo material
-    public function guardarMaterial(Request $request, $cursoId)
-    {
+        // Validar los datos del formulario
         $request->validate([
-            'descripcion' => 'nullable|string',
-            'archivo' => 'required|file',
+            'descripcion' => 'required|string|max:255',
+            'archivo' => 'required|file|mimes:pdf,mp4,jpg,png',
             'tipo' => 'required|string',
+            'curso_id' => 'required|exists:cursos,id',
         ]);
 
-        $curso = Curso::findOrFail($cursoId);
+        // Subir el archivo
+        $archivoPath = $request->file('archivo')->store('materiales', 'public');
 
-        // Subir archivo
-        $archivo = $request->file('archivo')->store('materiales/' . $cursoId, 'public');
-
+        // Crear el material didáctico
         MaterialDidactico::create([
-            'descripcion' => $request->input('descripcion'),
-            'archivo' => $archivo,
-            'tipo' => $request->input('tipo'),
-            'curso_id' => $cursoId,
+            'descripcion' => $request->descripcion,
+            'archivo' => $archivoPath,
+            'tipo' => $request->tipo,
+            'curso_id' => $request->curso_id,
         ]);
 
-        return redirect()->route('materiales.ver', $cursoId)->with('success', 'Material agregado correctamente.');
+        // Redirigir con mensaje de éxito
+        return redirect()->back()->with('success', 'Material didáctico agregado correctamente.');
     }
+
 }
