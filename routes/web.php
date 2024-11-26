@@ -41,7 +41,7 @@ Route::post('/register', [AuthController::class, 'register'])->name('register.su
 
 // Rutas para administradores
 Route::middleware('roles:admin')->group(function () {
-    Route::get('/admin', function () {
+    Route::get('/administrador', function () {
         return view('admin.dashboard');
     })->name('admin.dashboard');
 
@@ -99,16 +99,26 @@ Route::post('cursos/{cursoId}/materiales', [MaterialDidacticoController::class, 
 
 
 
+
 Route::get('/curso/{id}/detalles', [CursoController::class, 'detalles'])->name('curso.detalles');
 //Route::get('/curso/{id}/detalles', [CursoController::class, 'show'])->name('curso.show');
 
 Route::get('/curso/{id}/comprar', [CursoController::class, 'comprar'])->name('curso.comprar');
 
 
+
 });
 
 Route::get('plan', [SuscripcionController::class, 'plan'])->name('plan');
-Route::get('pago/{precio}', [SuscripcionController::class, 'pago'])->name('pago');
 Route::get('/stripe/{precio}', [SuscripcionController::class, 'stripe']);
 Route::post('stripe/{precio}', [SuscripcionController::class, 'stripePost'])
     ->name('stripe.post');
+
+->name('stripe.post');
+
+Route::get('/bitacora', [SuscripcionController::class, 'bitacora']);
+
+Route::get('/estadistica', [SuscripcionController::class, 'estadistica']);
+
+
+

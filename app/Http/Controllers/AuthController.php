@@ -22,20 +22,20 @@ class AuthController extends Controller
         $credentials = $request->only('correo', 'contrasena');
 
         if (Auth::attempt(['correo' => $credentials['correo'], 'password' => $credentials['contrasena']])) {
-            // Autenticación exitosa
-            $usuario = Auth::user();
-            session(['usuario_id'=> $usuario->id]);
-            session(['usuario_nombre'=> $usuario->nombre]);
-            // Redireccionar según el rol del usuario
-        if ($usuario->rol->nombre === 'admin') {
-            return redirect()->intended('/admin');
-        } elseif ($usuario->rol->nombre === 'cliente') {
-            return redirect()->intended('/usuario');
-        } elseif ($usuario->rol->nombre === 'editor') {
-            return redirect()->intended('/editor/dashboard');
-        } else {
-            return redirect()->intended('/dashboard');
-        }
+                // Autenticación exitosa
+                $usuario = Auth::user();
+                session(['usuario_id'=> $usuario->id]);
+                session(['usuario_nombre'=> $usuario->nombre]);
+                // Redireccionar según el rol del usuario
+            if ($usuario->rol->nombre === 'admin') {
+                return redirect()->intended('/administrador');
+            } elseif ($usuario->rol->nombre === 'cliente') {
+                return redirect()->intended('/usuario');
+            } elseif ($usuario->rol->nombre === 'editor') {
+                return redirect()->intended('/editor/dashboard');
+            } else {
+                return redirect()->intended('/dashboard');
+            }
         }
 
         // Autenticación fallida

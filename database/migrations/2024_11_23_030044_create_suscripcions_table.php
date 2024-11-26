@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('suscripcions', function (Blueprint $table) {
             $table->id();
-            
+
             $table->foreignId('consumidor_id')->constrained('usuarios')->cascadeOnUpdate()->cascadeOnDelete();       
             $table->foreignId('plan_id')->constrained('plans')->cascadeOnUpdate()->cascadeOnDelete();       
             $table->datetime('fecha_inicio');

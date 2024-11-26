@@ -4,9 +4,11 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+
+// ------------------------
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
-use App\Models\PLan;
+use App\Models\Plan;
 
 class SuscripcionSeeder extends Seeder
 {
@@ -15,8 +17,14 @@ class SuscripcionSeeder extends Seeder
      */
     public function run(): void
     {
-
         DB::table('usuarios')->insert([
+            [
+                'nombre' => 'Serginho',
+                'apellido' => 'Cambara',
+                'correo' => 'admin@gmail.com',
+                'contrasena' => Hash::make('12345678'),
+                'rol_id' => 1, // ID de 'admin'
+            ],
             [
                 'nombre' => 'consumnidor1',
                 'apellido' => 'User',

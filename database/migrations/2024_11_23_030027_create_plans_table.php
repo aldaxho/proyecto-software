@@ -13,9 +13,11 @@ return new class extends Migration
     {
         Schema::create('plans', function (Blueprint $table) {
             $table->id();
+
             $table->string('nombre');
             $table->decimal('precio', 8, 2); // 8 dígitos en total, 2 después del punto decimal
             $table->integer('dias');            
+
             $table->timestamps();
         });
     }

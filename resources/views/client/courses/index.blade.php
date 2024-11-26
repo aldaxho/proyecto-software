@@ -3,6 +3,7 @@
 
 @section('content')
 
+
     @if (Session::has('success'))
         <div class="alert alert-success text-center">
             <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
@@ -10,9 +11,17 @@
         </div>
     @endif
 
+
+    @if (Session::has('error'))
+        <div class="alert alert-danger text-center">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+            <p>{{ Session::get('error') }}</p>
+        </div>
+    @endif
+
+
     <!-- Page content -->
     <section class="container">
-
 
         <!-- Breadcrumb -->
         <nav class="pt-4 mt-lg-3" aria-label="breadcrumb">
