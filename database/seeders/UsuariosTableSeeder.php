@@ -29,6 +29,20 @@ class UsuariosTableSeeder extends Seeder
                 'contrasena' => Hash::make('12345678'),
                 'rol_id' => 2, // ID de 'cliente'
             ],
+            [
+                'nombre' => 'prueba1',
+                'apellido' => 'User',
+                'correo' => 'prueba1@gmail.com',
+                'contrasena' => Hash::make('12345678'),
+                'rol_id' => 2, // ID de 'cliente'
+            ],
+            [
+                'nombre' => 'prueba2',
+                'apellido' => 'User',
+                'correo' => 'prueba2@gmail.com',
+                'contrasena' => Hash::make('12345678'),
+                'rol_id' => 2, // ID de 'cliente'
+            ],
            /* [
                 'nombre' => 'Autor',
                 'apellido' => 'User',
