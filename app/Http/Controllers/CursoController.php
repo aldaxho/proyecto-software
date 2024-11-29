@@ -58,25 +58,27 @@ class CursoController extends Controller
 
     public function show($id)
     {
-        $curso = Curso::with('materiales')->findOrFail($id);
+        // $curso = Curso::with('materiales')->findOrFail($id);
 
-        $usuario = Auth::user();
-        if (!$usuario) {
-            return redirect()->route('login')->with('error', 'Debes iniciar sesión para acceder a los cursos.');
-        }
+        // $usuario = Auth::user();
+        // if (!$usuario) {
+        //     return redirect()->route('login')->with('error', 'Debes iniciar sesión para acceder a los cursos.');
+        // }
 
-        // Verificar si el usuario ha comprado el curso
-        $haCompradoCurso = $usuario->compras()->where('curso_id', $curso->id)->exists();
+        // // Verificar si el usuario ha comprado el curso
+        // $haCompradoCurso = $usuario->compras()->where('curso_id', $curso->id)->exists();
 
-        // Verificar si el usuario es suscriptor
-        $esSuscriptor = $usuario->es_suscriptor; // Cambia esto según tu lógica de suscripciones
+        // // Verificar si el usuario es suscriptor
+        // $esSuscriptor = $usuario->es_suscriptor; // Cambia esto según tu lógica de suscripciones
 
-        // Pasar datos a la vista
-        return view('client.courses.show', [
-            'curso' => $curso,
-            'haCompradoCurso' => $haCompradoCurso,
-            'esSuscriptor' => $esSuscriptor,
-        ]);
+        // // Pasar datos a la vista
+        // return view('client.courses.show', [
+        //     'curso' => $curso,
+        //     'haCompradoCurso' => $haCompradoCurso,
+        //     'esSuscriptor' => $esSuscriptor,
+        // ]);
+
+        return view('suscripciones/plan');
     }
 
 

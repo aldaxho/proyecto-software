@@ -14,8 +14,8 @@ use Illuminate\Support\Facades\Auth;
 use Session;
 use App\Models\Bitacora;
 use Illuminate\Support\Facades\DB;
-
-
+use App\Models\Usuario;
+use App\Models\Curso;
 
 class SuscripcionController extends Controller
 {
@@ -97,8 +97,8 @@ class SuscripcionController extends Controller
             $bitacora->save();
 
             // Mensaje de éxito
-            Session::flash('success', '¡PAGO CON ÉXITO!');
-            return redirect()->route('courses.index')->with('success', 'Pago realizado exitosamente.');
+            Session::flash('success', '¡PAGO CON ÉXITO!');            
+            return redirect()->route('compra')->with('success', 'Pago realizado exitosamente.');
         } catch (\Exception $e) {
             // Manejo de errores
             Session::flash('error', 'Error en el pago: ' . $e->getMessage());
@@ -106,6 +106,19 @@ class SuscripcionController extends Controller
         }
     }
 
+    public function suscripciones(){
+        if(Auth::id()){
+            $usuario = Auth::User();     
+            $suscripcion = DB::table('usuarios')
+            ->join('suscripcions', 'usuarios.id', '=', 'suscripcions.consumidor_id')
+            ->join('plans', 'suscripcions.plan_id', '=', 'plans.id')
+            ->select('usuarios.nombre as user', 'plans.nombre as plan', 'suscripcions.fecha_inicio', 'suscripcions.fecha_fin')
+            ->where('suscripcions.consumidor_id', '=', $usuario->id)
+            ->get();     
+            return view('suscripciones.misSuscripciones', compact('suscripcion', 'usuario'));
+        }
+        return redirect()->route('singin');
+    }
 
     public function bitacora()
     {
@@ -145,8 +158,7 @@ class SuscripcionController extends Controller
         return view('suscripciones.estadistica', [          
             'estadisticas' => $estadisticas, // Datos consolidados
         ]);
-    }
-
+    }     
 
     
 
