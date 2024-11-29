@@ -1,6 +1,22 @@
 @extends('layouts.client')
 
 @section('content')
+
+@if (Session::has('success'))
+<div class="alert alert-success text-center">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+    <p>{{ Session::get('success') }}</p>
+</div>
+@endif
+
+
+@if (Session::has('error'))
+<div class="alert alert-danger text-center">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+    <p>{{ Session::get('error') }}</p>
+</div>
+@endif
+
 <div class="container">
     <h1>Mis Cursos</h1>
     @foreach ($cursos->groupBy('categoria.nombre') as $categoria => $cursosPorCategoria)

@@ -19,7 +19,7 @@
                             @auth
                             <li><a href="{{route('client.courses.create')}}" class="dropdown-item">Crear Curso</a></li>
                             <li><a href="{{route('mis-cursos')}}" class="dropdown-item">Tus Cursos</a></li>
-                            <li><a href="account-security.html" class="dropdown-item">Cursos Comprados</a></li>
+                            <li><a href="{{ url('compra') }}" class="dropdown-item">Cursos Comprados</a></li>
                             @endauth
 
 
@@ -33,8 +33,11 @@
 
                         <ul class="dropdown-menu">
                             <li><a href="{{route('plan')}}" class="dropdown-item">Subscribirse</a></li>
-                            <li><a href="account-details.html" class="dropdown-item">Tus Subscripciones</a></li>
 
+                            @auth
+                            <li><a href="{{route('suscripciones')}}" class="dropdown-item">Tus Subscripciones</a></li>
+                            @endauth
+                            
                         </ul>
                     </li>
                     <li class="nav-item dropdown">
@@ -56,6 +59,12 @@
                         <a href="#" class="nav-link" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                             Cerrar Sesión
                         </a>
+                        {{-- <a href="#" class="nav-link" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                            Cerrar Sesión
+                        </a> --}}
+                        {{-- <div class="">
+                            <p>Bienvenido {{}}</p>
+                        </div> --}}
                     </li>
 
                         @else

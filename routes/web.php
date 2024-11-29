@@ -6,6 +6,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CursoController;
 use App\Http\Controllers\MaterialDidacticoController;
 use App\Http\Controllers\SuscripcionController;
+use App\Http\Controllers\CompraController;
 
 Route::get('/', function () {
     return view('client.home.index');
@@ -118,6 +119,10 @@ Route::post('stripe/{precio}', [SuscripcionController::class, 'stripePost'])
 Route::get('/bitacora', [SuscripcionController::class, 'bitacora']);
 
 Route::get('/estadistica', [SuscripcionController::class, 'estadistica']);
+
+Route::get('mis/suscripciones', [SuscripcionController::class, 'suscripciones'])->name('suscripciones');
+
+Route::get('compra', [CompraController::class, 'compra'])->name('compra');
 
 
 

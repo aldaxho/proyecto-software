@@ -29,7 +29,7 @@ class AuthController extends Controller
                 // Redireccionar según el rol del usuario
             if ($usuario->rol->nombre === 'admin') {
                 return redirect()->intended('/administrador');
-            } elseif ($usuario->rol->nombre === 'cliente') {
+            } elseif ($usuario->rol->nombre === 'cliente') {                
                 return redirect()->intended('/usuario');
             } elseif ($usuario->rol->nombre === 'editor') {
                 return redirect()->intended('/editor/dashboard');
