@@ -13,7 +13,6 @@ class Categoria extends Model
     protected $fillable = [
         'nombre',
         'descripcion',
-        'estado',
     ];
 
     public function cursos()

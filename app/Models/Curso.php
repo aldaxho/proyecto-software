@@ -17,7 +17,7 @@ class Curso extends Model
         'categoria_id',
         'precio',
         'tiempo',
-        'calificacion',
+
         'estado',
         'fecha_creacion',
         'imagen',
@@ -61,6 +61,18 @@ public function usuarios()
 public function materiales()
 {
     return $this->hasMany(MaterialDidactico::class, 'curso_id'); // Ajusta 'curso_id' si es diferente
+}
+// Método para calcular el promedio de estrellas
+public function promedioCalificaciones()
+{
+    return $this->calificaciones()->avg('estrellas'); // Promedio de las calificaciones
+}
+
+/*administrativas */
+
+public function getCalificacionPromedioAttribute()
+{
+    return $this->calificaciones()->avg('calificacion') ?: 0;
 }
 
 }

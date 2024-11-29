@@ -22,7 +22,9 @@ class DatabaseSeeder extends Seeder
             SubscripcionesTableSeeder::class,
     //        MetodosPagoTableSeeder::class,
             RenovacionesTableSeeder::class,
-   //         CursosTableSeeder::class,
+   
+            CursoSeeder::class,
+
             SuscripcionSeeder::class,
         ]);
     }
