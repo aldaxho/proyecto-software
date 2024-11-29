@@ -41,7 +41,7 @@
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Planes de
                             Estudio</a>
                         <ul class="dropdown-menu">
-                            <li><a href="account-details.html" class="dropdown-item">Crear Plan de Estudio</a></li>
+                            <li><a href="{{route('plan_estudio.create')}}" class="dropdown-item">Crear Plan de Estudio</a></li>
                             <li><a href="account-details.html" class="dropdown-item">Ver Planes de Estudio</a></li>
                             <li><a href="account-details.html" class="dropdown-item">Tus Planes de Estudio</a></li>
                         </ul>
@@ -49,10 +49,10 @@
 
                     @auth
                     <li class="nav-item">
-                        
+
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                             @csrf
-                        </form>                        
+                        </form>
                         <a href="#" class="nav-link" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                             Cerrar Sesión
                         </a>

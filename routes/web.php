@@ -7,6 +7,7 @@ use App\Http\Controllers\CursoController;
 use App\Http\Controllers\MaterialDidacticoController;
 use App\Http\Controllers\SuscripcionController;
 use App\Http\Controllers\CategoriaController;
+use App\Http\Controllers\PlanEstudioController;
 
 Route::get('/', function () {
     return view('client.home.index');
@@ -128,3 +129,8 @@ Route::get('/estadistica', [SuscripcionController::class, 'estadistica']);
 
 
 
+//-------------------------------plan de estudio
+Route::get('/plan-estudio/create', [PlanEstudioController::class, 'create'])->name('plan_estudio.create');
+//Route::resource('/plan-estudio', PlanEstudioController::class)->names('plan_estudio');
+//Route::get('/plan-estudio/{id}', [PlanEstudioController::class, 'show'])->name('plan_estudio.show');
+Route::post('/plan-estudio/generar', [PlanEstudioController::class, 'generarPlandeEstudio'])->name('plan_estudio.generar');
