@@ -145,4 +145,26 @@ class CursoController extends Controller
     {
         //
     }
+
+    /* Parte Administrativa*/
+    public function indexAdmin()
+{
+    // Obtener los 10 cursos más vendidos
+    $cursosMasVendidos = Curso::with(['categoria', 'autornombre'])
+        ->withCount('compras') // Contar el número de compras
+        ->orderByDesc('compras_count') // Ordenar por cantidad de compras
+        ->take(10) // Limitar a 10 resultados
+        ->get();
+
+    // Obtener el curso mejor calificado
+   // Curso mejor calificado
+   $cursoMejorCalificado = Curso::with('categoria', 'autornombre', 'calificaciones')
+   ->withAvg('calificaciones', 'estrellas') // Promedio de calificaciones
+   ->orderByDesc('calificaciones_avg_estrellas') // Ordenamos por promedio de calificación
+   ->first();
+
+    return view('admin.secciones.CursoCrud', compact('cursosMasVendidos', 'cursoMejorCalificado'));
+}
+
+
 }

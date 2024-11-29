@@ -20,7 +20,7 @@ class CursoSeeder extends Seeder
             'categoria_id' => 1, // ID de una categoría existente
             'precio' => 49.99,
             'tiempo' => '10 horas',
-            'calificacion' => 4.5,
+        
             'estado' => 'publicado', // publicado/borrador
             'fecha_creacion' => now(),
             'imagen' => 'https://talently.tech/blog/que-es-laravel/',
@@ -33,7 +33,7 @@ class CursoSeeder extends Seeder
             'categoria_id' => 2,
             'precio' => 39.99,
             'tiempo' => '15 horas',
-            'calificacion' => 4.8,
+
             'estado' => 'publicado',
             'fecha_creacion' => now(),
             'imagen' => 'https://jrgonzalez.es/string-contain-php',
@@ -46,7 +46,7 @@ class CursoSeeder extends Seeder
             'categoria_id' => 3,
             'precio' => 59.99,
             'tiempo' => '12 horas',
-            'calificacion' => 4.7,
+
             'estado' => 'publicado',
             'fecha_creacion' => now(),
             'imagen' => 'https://escuela.it/cursos/curso-avanzado-javascript',

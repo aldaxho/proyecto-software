@@ -63,10 +63,19 @@
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('admin.secciones.subscripciones') }}">subcripciones</a>
             </li>
-
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url('/categorias') }}">Gestionar Categoria</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('admin.secciones.CursoCrud') }}">Gestion de Cursos</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url('/bitacora') }}">Preferencias de Usuarios</a>
+            </li>
             <li class="nav-item">
                 <a class="nav-link" href="{{ url('/estadistica') }}">Estadistica</a>
             </li>
+
             <li class="nav-item">
                 <a class="nav-link" href="{{ url('/bitacora') }}">Bitacora</a>
             </li>
@@ -89,7 +98,7 @@
     <div class="content" id="content">
         <!-- Botón para mostrar/ocultar sidebar en pantallas pequeñas -->
         <button class="btn btn-primary mb-3" onclick="toggleSidebar()">☰ Menú</button>
-        
+
         <!-- Área de contenido -->
         @yield('content')
     </div>
