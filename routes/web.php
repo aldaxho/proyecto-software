@@ -10,6 +10,7 @@ use App\Http\Controllers\SuscripcionController;
 use App\Http\Controllers\CompraController;
 
 use App\Http\Controllers\CategoriaController;
+use App\Http\Controllers\PlanEstudioController;
 
 
 Route::get('/', function () {
@@ -136,3 +137,8 @@ Route::get('compra', [CompraController::class, 'compra'])->name('compra');
 
 
 
+//-------------------------------plan de estudio
+Route::get('/plan-estudio/create', [PlanEstudioController::class, 'create'])->name('plan_estudio.create');
+//Route::resource('/plan-estudio', PlanEstudioController::class)->names('plan_estudio');
+//Route::get('/plan-estudio/{id}', [PlanEstudioController::class, 'show'])->name('plan_estudio.show');
+Route::post('/plan-estudio/generar', [PlanEstudioController::class, 'generarPlandeEstudio'])->name('plan_estudio.generar');
