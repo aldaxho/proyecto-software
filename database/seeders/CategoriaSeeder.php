@@ -13,8 +13,8 @@ class CategoriaSeeder extends Seeder
      */
     public function run(): void
     {
-        Categoria::create(['nombre' => 'Tecnología', 'descripcion' => 'Cursos de tecnología']);
-        Categoria::create(['nombre' => 'Arte', 'descripcion' => 'Cursos de arte y diseño']);
-        Categoria::create(['nombre' => 'Ciencia', 'descripcion' => 'Cursos de ciencia']);
+        // Categoria::create(['nombre' => 'Tecnología', 'descripcion' => 'Cursos de tecnología']);
+        // Categoria::create(['nombre' => 'Arte', 'descripcion' => 'Cursos de arte y diseño']);
+        // Categoria::create(['nombre' => 'Ciencia', 'descripcion' => 'Cursos de ciencia']);
     }
 }
