@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+
 use App\Models\Categoria;
 use App\Models\Curso;
 use Illuminate\Http\Request;
@@ -106,4 +107,4 @@ class PlanEstudioController extends Controller
             throw new \Exception("Error al consumir OpenAI: {$e->getMessage()}");
         }
     }
-}
+
