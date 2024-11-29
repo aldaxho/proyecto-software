@@ -6,7 +6,11 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CursoController;
 use App\Http\Controllers\MaterialDidacticoController;
 use App\Http\Controllers\SuscripcionController;
+
 use App\Http\Controllers\CompraController;
+
+use App\Http\Controllers\CategoriaController;
+
 
 Route::get('/', function () {
     return view('client.home.index');
@@ -64,6 +68,12 @@ Route::middleware('roles:admin')->group(function () {
     Route::get('/subcripciones', [AdminController::class, 'subscripciones'])->name('admin.secciones.subscripciones');
 
     // Más rutas para el rol admin...
+
+    /*crud categoria */
+    Route::resource('categorias', CategoriaController::class);
+
+    Route::get('/curso-admin',[CursoController::class,'indexAdmin'])->name('admin.secciones.CursoCrud');
+
 });
 
 // Rutas para clientes
