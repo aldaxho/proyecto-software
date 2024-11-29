@@ -107,4 +107,5 @@ class PlanEstudioController extends Controller
             throw new \Exception("Error al consumir OpenAI: {$e->getMessage()}");
         }
     }
+}
 
