@@ -32,7 +32,7 @@
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Planes de
                             Estudio</a>
                         <ul class="dropdown-menu">
-                            <li><a href="account-details.html" class="dropdown-item">Crear Plan de Estudio</a></li>
+                            <li><a href="{{route('plan_estudio.create')}}" class="dropdown-item">Crear Plan de Estudio</a></li>
                             <li><a href="account-details.html" class="dropdown-item">Ver Planes de Estudio</a></li>
                             <li><a href="account-details.html" class="dropdown-item">Tus Planes de Estudio</a></li>
                         </ul>

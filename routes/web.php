@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\PlanEstudioController;
 
 
 Route::get('/', function () {
@@ -76,4 +77,9 @@ Route::middleware('roles:cliente')->group(function () {
     })->name('client.orders');
 
     // Más rutas para el rol cliente...
+
+  
+    Route::resource('/plan-estudio', PlanEstudioController::class)->names('plan_estudio');
+
+
 });

@@ -14,8 +14,7 @@
           <h5 class="my-2">Welcome!</h5>
           <h1 class="display-3 mb-4">Learn <span class="text-primary">IT Online</span> with No Limits</h1>
           <p class="fs-lg mb-5">Enjoy our great selection of IT courses. Choose from more than 25K online video courses and become an IT expert now!</p>
-
-          <!-- Desktop form -->
+            <!-- Desktop form -->
           <form class="d-none d-sm-flex mb-5">
             <div class="input-group d-block d-sm-flex input-group-lg me-3">
               <input type="text" class="form-control w-50" placeholder="Search courses...">
@@ -34,7 +33,6 @@
               <i class="bx bx-search"></i>
             </button>
           </form>
-          
           <!-- Mobile form -->
           <form class="d-sm-none mb-5">
             <input type="text" class="form-control form-control-lg mb-2" placeholder="Search courses...">
